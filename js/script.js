@@ -1,10 +1,13 @@
+const ASSET_BASE = window.location.pathname.includes("/pages/") ? "../Assets/" : "Assets/";
+const SITE_ROOT = window.location.pathname.includes("/pages/") ? "../" : "";
+
 const featuredProducts = [
   {
     name: "Everyday Classic",
     category: "Men's Sneakers",
     priceUsd: 229.96,
     description: "A timeless everyday sneaker with a comfortable fit and clean finish.",
-    image: "Assets/find%20your%20fit.jpg",
+    image: `${ASSET_BASE}find%20your%20fit.jpg`,
     imageAlt: "Light-colored classic sneaker",
   },
   {
@@ -12,7 +15,7 @@ const featuredProducts = [
     category: "Men's Sneakers",
     priceUsd: 329.96,
     description: "Soft neutral tones and all-day comfort for your daily rotation.",
-    image: "Assets/get%20your%20pair.jpg",
+    image: `${ASSET_BASE}get%20your%20pair.jpg`,
     imageAlt: "Neutral-toned sneaker",
   },
   {
@@ -20,7 +23,7 @@ const featuredProducts = [
     category: "Men's Sneakers",
     priceUsd: 169.99,
     description: "A versatile street-ready sneaker made for days on the move.",
-    image: "Assets/Shop%20sneakers.jpg",
+    image: `${ASSET_BASE}Shop%20sneakers.jpg`,
     imageAlt: "White sneaker in a city setting",
   },
 ];
@@ -31,7 +34,7 @@ const summerProducts = [
     category: "Men's Sneakers",
     priceUsd: 189.99,
     description: "Soft suede with a bold colorway for easy summer styling.",
-    image: "Assets/left%20snaeks.jpg",
+    image: `${ASSET_BASE}left%20snaeks.jpg`,
     imageAlt: "Orange suede sneakers",
   },
   {
@@ -39,7 +42,7 @@ const summerProducts = [
     category: "Men's Sneakers",
     priceUsd: 219.99,
     description: "A laid-back court sneaker in fresh green and cream tones.",
-    image: "Assets/right%20top%20sneakers.jpg",
+    image: `${ASSET_BASE}right%20top%20sneakers.jpg`,
     imageAlt: "Green court sneaker on a woven chair",
   },
   {
@@ -47,7 +50,7 @@ const summerProducts = [
     category: "Men's Sneakers",
     priceUsd: 169.99,
     description: "Retro-inspired runners with a bright, easy-to-wear finish.",
-    image: "Assets/right%20bottom%20sneakes.jpg",
+    image: `${ASSET_BASE}right%20bottom%20sneakes.jpg`,
     imageAlt: "Yellow retro sneakers",
   },
   {
@@ -55,7 +58,7 @@ const summerProducts = [
     category: "Men's Sneakers",
     priceUsd: 199.99,
     description: "A timeless brown suede pair with a comfortable gum sole.",
-    image: "Assets/bottom%20sneakers.jpg",
+    image: `${ASSET_BASE}bottom%20sneakers.jpg`,
     imageAlt: "Brown suede sneakers",
   },
   {
@@ -63,7 +66,7 @@ const summerProducts = [
     category: "Men's Sneakers",
     priceUsd: 179.99,
     description: "A versatile neutral sneaker that goes with your daily rotation.",
-    image: "Assets/find%20your%20fit.jpg",
+    image: `${ASSET_BASE}find%20your%20fit.jpg`,
     imageAlt: "Light neutral everyday sneakers",
   },
   {
@@ -71,7 +74,7 @@ const summerProducts = [
     category: "Men's Sneakers",
     priceUsd: 209.99,
     description: "A lightweight everyday pick with a clean, modern profile.",
-    image: "Assets/get%20your%20pair.jpg",
+    image: `${ASSET_BASE}get%20your%20pair.jpg`,
     imageAlt: "Fresh neutral sneaker",
   },
 ];
@@ -82,7 +85,7 @@ const womenProducts = [
     category: "Women's Sneakers",
     priceUsd: 189.99,
     description: "A lightweight neutral runner for comfortable days on the move.",
-    image: "Assets/find%20your%20fit.jpg",
+    image: `${ASSET_BASE}find%20your%20fit.jpg`,
     imageAlt: "Light neutral sneakers for everyday wear",
   },
   {
@@ -90,7 +93,7 @@ const womenProducts = [
     category: "Women's Sneakers",
     priceUsd: 219.99,
     description: "A warm suede finish adds an easy statement to everyday outfits.",
-    image: "Assets/left%20snaeks.jpg",
+    image: `${ASSET_BASE}left%20snaeks.jpg`,
     imageAlt: "Orange suede sneakers",
   },
   {
@@ -98,7 +101,7 @@ const womenProducts = [
     category: "Women's Sneakers",
     priceUsd: 199.99,
     description: "A clean, versatile classic that feels at home wherever you go.",
-    image: "Assets/get%20your%20pair.jpg",
+    image: `${ASSET_BASE}get%20your%20pair.jpg`,
     imageAlt: "Fresh everyday sneaker",
   },
 ];
@@ -109,7 +112,7 @@ const kidsProducts = [
     category: "Kids' Sneakers",
     priceUsd: 99.99,
     description: "A lightweight everyday pair for school days and playtime.",
-    image: "Assets/Shop%20sneakers.jpg",
+    image: `${ASSET_BASE}Shop%20sneakers.jpg`,
     imageAlt: "Everyday sneaker ready for play",
   },
   {
@@ -117,7 +120,7 @@ const kidsProducts = [
     category: "Kids' Sneakers",
     priceUsd: 119.99,
     description: "Easy-going comfort for little explorers and big adventures.",
-    image: "Assets/get%20your%20pair.jpg",
+    image: `${ASSET_BASE}get%20your%20pair.jpg`,
     imageAlt: "Comfortable sneaker for little adventures",
   },
   {
@@ -125,7 +128,7 @@ const kidsProducts = [
     category: "Kids' Sneakers",
     priceUsd: 89.99,
     description: "A fun, colorful favorite made for busy days on the move.",
-    image: "Assets/right%20bottom%20sneakes.jpg",
+    image: `${ASSET_BASE}right%20bottom%20sneakes.jpg`,
     imageAlt: "Bright retro sneakers",
   },
 ];
@@ -139,19 +142,19 @@ const formatPKR = (priceUsd) =>
 const allProducts = [
   ...featuredProducts.map((product) => ({
     ...product,
-    href: "index.html#product-grid",
+    href: `${SITE_ROOT}index.html#product-grid`,
   })),
   ...summerProducts.map((product) => ({
     ...product,
-    href: "index.html#summer-product-grid",
+    href: `${SITE_ROOT}index.html#summer-product-grid`,
   })),
   ...womenProducts.map((product) => ({
     ...product,
-    href: "women.html#women-product-grid",
+    href: `${SITE_ROOT}pages/women.html#women-product-grid`,
   })),
   ...kidsProducts.map((product) => ({
     ...product,
-    href: "kids.html#kids-product-grid",
+    href: `${SITE_ROOT}pages/kids.html#kids-product-grid`,
   })),
 ].map((product) => ({
   ...product,
@@ -357,7 +360,7 @@ const renderProductGrid = (selector, products) => {
       <p class="favorites-empty__eyebrow">YOUR EDIT IS WAITING</p>
       <h2>No favourites just yet.</h2>
       <p>When a pair catches your eye, tap its heart and we’ll keep it right here for you.</p>
-      <a href="index.html#product-grid">Find your first favourite <span aria-hidden="true">→</span></a>
+      <a href="${SITE_ROOT}index.html#product-grid">Find your first favourite <span aria-hidden="true">→</span></a>
     `;
     productGrid.append(emptyState);
     return;

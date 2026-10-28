@@ -2044,7 +2044,7 @@ body.cart-is-open {
   overflow: hidden;
   padding: 42px 24px;
   color: #fffaf1;
-  background: #645342 url("Assets/Shop%20sneakers.jpg") center 48% / cover no-repeat;
+  background: #645342 url("../Assets/Shop%20sneakers.jpg") center 48% / cover no-repeat;
   isolation: isolate;
   text-align: center;
 }

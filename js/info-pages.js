@@ -1,3 +1,5 @@
+const INFO_PAGE_ROOT = window.location.pathname.includes("/pages/") ? "../" : "";
+
 const infoPages = {
   contact: {
     title: "Contact Us",
@@ -67,7 +69,7 @@ const infoPages = {
     content: `
       <article class="info-story-card"><span class="info-card__eyebrow">THE SOLE POINT OF VIEW</span><h2>Find your fit. Make it your own.</h2><p>We believe the right pair does more than finish an outfit. It gives you the confidence to take the long way, try something new, and feel at home wherever the day leads.</p><p>SOLE brings together versatile silhouettes, considered details, and easy-to-wear styles for the everyday rotation.</p></article>
       <div class="info-card-grid"><article class="info-card"><span class="info-card__eyebrow">OUR APPROACH</span><h2>Everyday, considered</h2><p>We keep the edit focused on wearable styles that are easy to make your own.</p></article><article class="info-card"><span class="info-card__eyebrow">OUR PROMISE</span><h2>Choose with confidence</h2><p>Clear product details, fit guidance, and helpful support should make choosing your next pair feel simple.</p></article></div>
-      <div class="info-callout"><h2>Your next step starts here.</h2><p>Explore the latest pairs and find the one that feels like you.</p><a class="info-button" href="index.html#product-grid">Discover sneakers <span aria-hidden="true">→</span></a></div>
+      <div class="info-callout"><h2>Your next step starts here.</h2><p>Explore the latest pairs and find the one that feels like you.</p><a class="info-button" href="${INFO_PAGE_ROOT}index.html#product-grid">Discover sneakers <span aria-hidden="true">→</span></a></div>
     `,
   },
   fit: {
@@ -114,9 +116,9 @@ if (!page) {
 document.title = `${page.title} — SOLE`;
 document.body.innerHTML = `
   <header class="site-header site-header--light">
-    <a class="brand" href="index.html#collection" aria-label="SOLE home"><span class="brand__mark" aria-hidden="true">S</span><span>SOLE<span class="brand__period">.</span></span></a>
+    <a class="brand" href="${INFO_PAGE_ROOT}index.html#collection" aria-label="SOLE home"><span class="brand__mark" aria-hidden="true">S</span><span>SOLE<span class="brand__period">.</span></span></a>
     <nav class="site-nav" aria-label="Main navigation">
-      <a href="index.html#collection">Men</a><a href="women.html">Women</a><a href="kids.html">Kids</a><a href="accessories.html">Accessories</a><a href="collection.html">Collection</a><a href="brands.html">Brands</a>
+      <a href="${INFO_PAGE_ROOT}index.html#collection">Men</a><a href="${INFO_PAGE_ROOT}pages/women.html">Women</a><a href="${INFO_PAGE_ROOT}pages/kids.html">Kids</a><a href="${INFO_PAGE_ROOT}pages/accessories.html">Accessories</a><a href="${INFO_PAGE_ROOT}pages/collection.html">Collection</a><a href="${INFO_PAGE_ROOT}pages/brands.html">Brands</a>
     </nav>
     <div class="header-actions" aria-label="Store shortcuts">
       <form class="header-search" role="search">
@@ -125,23 +127,23 @@ document.body.innerHTML = `
         <button class="header-search__close" type="button" aria-label="Close search" tabindex="-1">&times;</button>
         <div class="header-search__results" id="header-search-results" hidden><p class="header-search__status" role="status" aria-live="polite"></p><div class="header-search__suggestions"></div><div class="header-search__products"></div></div>
       </form>
-      <a class="header-icon header-account" href="accounts.html" aria-label="My account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.2"></circle><path d="M5.8 20c.4-3.5 2.6-5.5 6.2-5.5s5.8 2 6.2 5.5"></path></svg></a>
-      <a class="header-icon header-favorites" href="favorites.html" aria-label="Favourites"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 8.8c0 4.3-8.4 10-8.4 10s-8.4-5.7-8.4-10a4.2 4.2 0 0 1 8.4-1 4.2 4.2 0 0 1 8.4 1Z"></path></svg><span class="header-count" hidden></span></a>
+      <a class="header-icon header-account" href="${INFO_PAGE_ROOT}pages/accounts.html" aria-label="My account"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.2"></circle><path d="M5.8 20c.4-3.5 2.6-5.5 6.2-5.5s5.8 2 6.2 5.5"></path></svg></a>
+      <a class="header-icon header-favorites" href="${INFO_PAGE_ROOT}pages/favorites.html" aria-label="Favourites"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 8.8c0 4.3-8.4 10-8.4 10s-8.4-5.7-8.4-10a4.2 4.2 0 0 1 8.4-1 4.2 4.2 0 0 1 8.4 1Z"></path></svg><span class="header-count" hidden></span></a>
       <button class="header-icon header-icon--bag header-cart" type="button" aria-label="Shopping bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg><span class="bag-count" hidden></span></button>
     </div>
   </header>
   <main class="info-page">
-    <nav class="info-breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span>${page.title}</span></nav>
+    <nav class="info-breadcrumb" aria-label="Breadcrumb"><a href="${INFO_PAGE_ROOT}index.html">Home</a><span aria-hidden="true">/</span><span>${page.title}</span></nav>
     <section class="info-hero"><div><p class="info-hero__eyebrow">${page.eyebrow}</p><h1>${page.title}</h1><p>${page.description}</p></div><div class="info-hero__mark" aria-hidden="true">S<span>.</span></div></section>
     <section class="info-content" aria-label="${page.title} information">${page.content}</section>
-    <div class="info-back-link"><a href="index.html#collection"><span aria-hidden="true">←</span> Back to the collection</a></div>
+    <div class="info-back-link"><a href="${INFO_PAGE_ROOT}index.html#collection"><span aria-hidden="true">←</span> Back to the collection</a></div>
   </main>
   <footer class="site-footer">
     <div class="footer-main">
-      <div class="footer-brand-column"><a class="footer-brand" href="index.html#collection">SOLE<span>.</span></a><p>Everyday sneakers for wherever life takes you. Find your fit and make every step your own.</p><div class="footer-socials" aria-label="Social media"><a href="index.html#collection" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="footer-socials__dot" cx="17.7" cy="6.8" r="1"></circle></svg></a><a href="index.html#collection" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.5a4 4 0 1 1-3-3.9M14 4c.5 2.8 2.3 4.7 5 5.2"></path></svg></a><a href="index.html#collection" aria-label="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 3.5c-4.7 0-7.6 3.2-7.6 6.8 0 2.1.8 4 2.5 4.7.3.1.5 0 .6-.3l.3-1c.1-.3.1-.4-.2-.7-.5-.6-.8-1.4-.8-2.5 0-3.2 2.4-6.1 6.2-6.1 3.4 0 5.2 2.1 5.2 4.9 0 3.7-1.6 6.8-4 6.8-1.3 0-2.2-1.1-1.9-2.4.4-1.6 1.1-3.3 1.1-4.4 0-1-.5-1.8-1.6-1.8-1.3 0-2.3 1.4-2.3 3.2 0 1.2.4 2 .4 2s-1.4 5.8-1.7 6.8c-.5 2-.1 4.5 0 4.7.1.1.2.1.3 0 .1-.2 1.9-2.3 2.5-4.2l.8-3.1c.4.8 1.7 1.4 3 1.4 4 0 6.7-3.6 6.7-8.5 0-3.7-3.1-7.2-7.5-7.2Z"></path></svg></a></div></div>
-      <div class="footer-links"><h2>Shop</h2><a href="index.html#product-grid">New Arrivals</a><a href="index.html#collection">Men's Sneakers</a><a href="women.html">Women's Sneakers</a><a href="kids.html">Kids' Sneakers</a></div>
-      <div class="footer-links"><h2>Help</h2><a href="contact.html">Contact Us</a><a href="faq.html">FAQs</a><a href="shipping-returns.html">Shipping &amp; Returns</a><a href="size-guide.html">Size Guide</a></div>
-      <div class="footer-links"><h2>About</h2><a href="our-story.html">Our Story</a><a href="find-your-fit.html">Find Your Fit</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-service.html">Terms of Service</a></div>
+      <div class="footer-brand-column"><a class="footer-brand" href="${INFO_PAGE_ROOT}index.html#collection">SOLE<span>.</span></a><p>Everyday sneakers for wherever life takes you. Find your fit and make every step your own.</p><div class="footer-socials" aria-label="Social media"><a href="${INFO_PAGE_ROOT}index.html#collection" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="footer-socials__dot" cx="17.7" cy="6.8" r="1"></circle></svg></a><a href="${INFO_PAGE_ROOT}index.html#collection" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.5a4 4 0 1 1-3-3.9M14 4c.5 2.8 2.3 4.7 5 5.2"></path></svg></a><a href="${INFO_PAGE_ROOT}index.html#collection" aria-label="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 3.5c-4.7 0-7.6 3.2-7.6 6.8 0 2.1.8 4 2.5 4.7.3.1.5 0 .6-.3l.3-1c.1-.3.1-.4-.2-.7-.5-.6-.8-1.4-.8-2.5 0-3.2 2.4-6.1 6.2-6.1 3.4 0 5.2 2.1 5.2 4.9 0 3.7-1.6 6.8-4 6.8-1.3 0-2.2-1.1-1.9-2.4.4-1.6 1.1-3.3 1.1-4.4 0-1-.5-1.8-1.6-1.8-1.3 0-2.3 1.4-2.3 3.2 0 1.2.4 2 .4 2s-1.4 5.8-1.7 6.8c-.5 2-.1 4.5 0 4.7.1.1.2.1.3 0 .1-.2 1.9-2.3 2.5-4.2l.8-3.1c.4.8 1.7 1.4 3 1.4 4 0 6.7-3.6 6.7-8.5 0-3.7-3.1-7.2-7.5-7.2Z"></path></svg></a></div></div>
+      <div class="footer-links"><h2>Shop</h2><a href="${INFO_PAGE_ROOT}index.html#product-grid">New Arrivals</a><a href="${INFO_PAGE_ROOT}index.html#collection">Men's Sneakers</a><a href="${INFO_PAGE_ROOT}pages/women.html">Women's Sneakers</a><a href="${INFO_PAGE_ROOT}pages/kids.html">Kids' Sneakers</a></div>
+      <div class="footer-links"><h2>Help</h2><a href="${INFO_PAGE_ROOT}pages/contact.html">Contact Us</a><a href="${INFO_PAGE_ROOT}pages/faq.html">FAQs</a><a href="${INFO_PAGE_ROOT}pages/shipping-returns.html">Shipping &amp; Returns</a><a href="${INFO_PAGE_ROOT}pages/size-guide.html">Size Guide</a></div>
+      <div class="footer-links"><h2>About</h2><a href="${INFO_PAGE_ROOT}pages/our-story.html">Our Story</a><a href="${INFO_PAGE_ROOT}pages/find-your-fit.html">Find Your Fit</a><a href="${INFO_PAGE_ROOT}pages/privacy-policy.html">Privacy Policy</a><a href="${INFO_PAGE_ROOT}pages/terms-of-service.html">Terms of Service</a></div>
     </div>
     <div class="footer-bottom"><p>© 2026 SOLE. All rights reserved.</p><p>Made for every step.</p></div>
   </footer>
