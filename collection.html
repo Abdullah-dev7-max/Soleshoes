@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#74604f">
+  <meta name="description" content="Explore the latest SOLE sneaker collections, fresh drops, and timeless everyday favorites.">
+  <title>Sneaker Collections — SOLE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html#collection" aria-label="SOLE home">
+      <span class="brand__mark" aria-hidden="true">S</span>
+      <span>SOLE<span class="brand__period">.</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="index.html#collection">Men</a>
+      <a href="women.html">Women</a>
+      <a href="kids.html">Kids</a>
+      <a href="accessories.html">Accessories</a>
+      <a href="collection.html" aria-current="page">Collection</a>
+      <a href="brands.html">Brands</a>
+    </nav>
+    <div class="header-actions" aria-label="Store shortcuts">
+      <form class="header-search" role="search">
+        <button class="header-search-trigger" type="button" aria-label="Open product search" aria-expanded="false" aria-controls="header-search-results">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.6"></circle><path d="m16 16 4.2 4.2"></path></svg>
+        </button>
+        <input class="header-search__input" type="search" aria-label="Search products" placeholder="Search..." autocomplete="off" tabindex="-1">
+        <button class="header-search__close" type="button" aria-label="Close search" tabindex="-1">&times;</button>
+        <div class="header-search__results" id="header-search-results" hidden>
+          <p class="header-search__status" role="status" aria-live="polite"></p>
+          <div class="header-search__suggestions"></div>
+          <div class="header-search__products"></div>
+        </div>
+      </form>
+      <a class="header-icon header-account" href="accounts.html" aria-label="My account">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.2"></circle><path d="M5.8 20c.4-3.5 2.6-5.5 6.2-5.5s5.8 2 6.2 5.5"></path></svg>
+      </a>
+      <a class="header-icon header-favorites" href="favorites.html" aria-label="Favourites">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 8.8c0 4.3-8.4 10-8.4 10s-8.4-5.7-8.4-10a4.2 4.2 0 0 1 8.4-1 4.2 4.2 0 0 1 8.4 1Z"></path></svg>
+        <span class="header-count" hidden></span>
+      </a>
+      <button class="header-icon header-icon--bag header-cart" type="button" aria-label="Shopping bag">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+        <span class="bag-count" hidden></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero hero--collection" id="collection" aria-label="Featured sneaker collections">
+      <div class="hero__image-wrap">
+        <img class="hero__image" src="Assets/right%20top%20sneakers.jpg" alt="" fetchpriority="high">
+      </div>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__content">
+        <p class="hero__eyebrow">Find your next favorite</p>
+        <h1 class="hero__title">Fresh Collections.<br>Everyday Icons.</h1>
+        <p class="hero__description">Explore new drops and timeless sneakers, thoughtfully picked for your everyday style.</p>
+        <a class="hero__cta" href="#product-grid">
+          Explore Collections
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3.5 10h12m-5-5 5 5-5 5"></path></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="collection-section" aria-label="Explore sneaker collections">
+      <div class="style-cards">
+        <a class="style-card" href="#product-grid">
+          <img class="style-card__image" src="Assets/find%20your%20fit.jpg" alt="A classic sneaker surrounded by friends" loading="lazy">
+          <span class="style-card__shade" aria-hidden="true"></span>
+          <span class="style-card__content">
+            <span class="style-card__title">Sneakers That Move With You, Comfortable, Durable, And Always In Style.</span>
+            <span class="style-card__button">Find Your Fit</span>
+          </span>
+        </a>
+        <a class="style-card" href="#summer-products-heading">
+          <img class="style-card__image" src="Assets/get%20your%20pair.jpg" alt="A fresh pair of sneakers ready to wear" loading="lazy">
+          <span class="style-card__shade" aria-hidden="true"></span>
+          <span class="style-card__content">
+            <span class="style-card__title">Fresh Drops. Iconic Silhouettes. Sneakers That Speak Before You Do.</span>
+            <span class="style-card__button">Get Your Pair</span>
+          </span>
+        </a>
+        <a class="style-card style-card--feature" href="#recommendations">
+          <img class="style-card__image" src="Assets/Shop%20sneakers.jpg" alt="A pair of brown sneakers in a city setting" loading="lazy">
+          <span class="style-card__shade" aria-hidden="true"></span>
+          <span class="style-card__content">
+            <span class="style-card__title">STYLE-STACK</span>
+            <span class="style-card__button">Shop Sneakers</span>
+          </span>
+        </a>
+      </div>
+      <div class="collection-heading">
+        <h2>Newly Dropped Collections</h2>
+        <p>From fresh sneaker drops to timeless classics, discover authentic kicks<br class="desktop-break"> built for style and comfort.</p>
+      </div>
+    </section>
+
+    <section class="products-section" aria-labelledby="products-heading">
+      <h2 class="visually-hidden" id="products-heading">Featured sneakers</h2>
+      <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <section class="collection-heading collection-heading--recommended" id="recommendations">
+      <h2>Most Recommend Collections For You</h2>
+      <p>These sneakers drops to timeless classics, we bring you authentic<br class="desktop-break"> kicks built for style and comfort and</p>
+    </section>
+
+    <section class="recommendations-section" aria-label="Recommended sneaker collections">
+      <div class="recommendations-grid">
+        <a class="recommendation-card recommendation-card--tall" href="#summer-products-heading">
+          <img src="Assets/left%20snaeks.jpg" alt="Orange suede sneakers ready to wear" loading="lazy">
+          <span class="recommendation-card__shade" aria-hidden="true"></span>
+          <span class="recommendation-card__content">
+            <span class="recommendation-card__title">Sneakers</span>
+            <span class="recommendation-card__button">View all sneakers</span>
+          </span>
+        </a>
+        <a class="recommendation-card" href="#summer-products-heading">
+          <img src="Assets/right%20top%20sneakers.jpg" alt="Green sneaker on a woven chair" loading="lazy">
+          <span class="recommendation-card__shade" aria-hidden="true"></span>
+          <span class="recommendation-card__content">
+            <span class="recommendation-card__title">Sneakers</span>
+            <span class="recommendation-card__button">View all sneakers</span>
+          </span>
+        </a>
+        <a class="recommendation-card" href="#summer-products-heading">
+          <img src="Assets/right%20bottom%20sneakes.jpg" alt="Yellow retro sneakers" loading="lazy">
+          <span class="recommendation-card__shade" aria-hidden="true"></span>
+          <span class="recommendation-card__content">
+            <span class="recommendation-card__title">Sneakers</span>
+            <span class="recommendation-card__button">View all sneakers</span>
+          </span>
+        </a>
+        <a class="recommendation-card recommendation-card--wide" href="#summer-products-heading">
+          <img src="Assets/bottom%20sneakers.jpg" alt="Brown suede sneakers from the trending collection" loading="lazy">
+          <span class="recommendation-card__shade" aria-hidden="true"></span>
+          <span class="recommendation-card__content">
+            <span class="recommendation-card__title">Trending Now</span>
+            <span class="recommendation-card__button">Explore Shop <span aria-hidden="true">↗</span></span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="products-section products-section--summer" aria-labelledby="summer-products-heading">
+      <div class="collection-heading collection-heading--summer">
+        <h2 id="summer-products-heading">Summer Collections</h2>
+        <p>Find your new season favorites, from everyday classics to standout sneakers.</p>
+      </div>
+      <div class="product-grid" id="summer-product-grid"></div>
+      <a class="summer-products-link" href="#product-grid">View All Products <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+
+  <section class="promo-banner-section" aria-labelledby="promo-banner-heading">
+    <div class="promo-banner">
+      <img class="promo-banner__image" src="Assets/get%20your%20pair.jpg" alt="" loading="lazy">
+      <div class="promo-banner__shade" aria-hidden="true"></div>
+      <div class="promo-banner__content">
+        <h2 id="promo-banner-heading">Build Your Style With Confident Steps By Wearing Our Sneakers.</h2>
+        <a class="promo-banner__cta" href="#summer-products-heading">Shop Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-section" aria-labelledby="newsletter-heading">
+    <div class="newsletter-content">
+      <p class="newsletter-eyebrow">A good fit for your inbox</p>
+      <h2 id="newsletter-heading">Step Into Something New</h2>
+      <p>Get first looks at fresh drops, new arrivals, and stories worth sharing.</p>
+      <form class="newsletter-form" id="newsletter-form">
+        <label class="visually-hidden" for="newsletter-email">Email address</label>
+        <input id="newsletter-email" name="email" type="email" placeholder="Enter your email address" autocomplete="email" required>
+        <button type="submit">Join Us</button>
+      </form>
+      <p class="newsletter-status" id="newsletter-status" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand-column">
+        <a class="footer-brand" href="index.html#collection">SOLE<span>.</span></a>
+        <p>Everyday sneakers for wherever life takes you. Find your fit and make every step your own.</p>
+        <div class="footer-socials" aria-label="Social media">
+          <a href="index.html#collection" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="footer-socials__dot" cx="17.7" cy="6.8" r="1"></circle></svg></a>
+          <a href="index.html#collection" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.5a4 4 0 1 1-3-3.9M14 4c.5 2.8 2.3 4.7 5 5.2"></path></svg></a>
+          <a href="index.html#collection" aria-label="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 3.5c-4.7 0-7.6 3.2-7.6 6.8 0 2.1.8 4 2.5 4.7.3.1.5 0 .6-.3l.3-1c.1-.3.1-.4-.2-.7-.5-.6-.8-1.4-.8-2.5 0-3.2 2.4-6.1 6.2-6.1 3.4 0 5.2 2.1 5.2 4.9 0 3.7-1.6 6.8-4 6.8-1.3 0-2.2-1.1-1.9-2.4.4-1.6 1.1-3.3 1.1-4.4 0-1-.5-1.8-1.6-1.8-1.3 0-2.3 1.4-2.3 3.2 0 1.2.4 2 .4 2s-1.4 5.8-1.7 6.8c-.5 2-.1 4.5 0 4.7.1.1.2.1.3 0 .1-.2 1.9-2.3 2.5-4.2l.8-3.1c.4.8 1.7 1.4 3 1.4 4 0 6.7-3.6 6.7-8.5 0-3.7-3.1-7.2-7.5-7.2Z"></path></svg></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h2>Shop</h2>
+        <a href="#product-grid">New Arrivals</a>
+        <a href="index.html#collection">Men's Sneakers</a>
+        <a href="women.html">Women's Sneakers</a>
+        <a href="#summer-products-heading">Collections</a>
+      </div>
+      <div class="footer-links">
+        <h2>Help</h2>
+        <a href="contact.html">Contact Us</a>
+        <a href="faq.html">FAQs</a>
+        <a href="shipping-returns.html">Shipping &amp; Returns</a>
+        <a href="size-guide.html">Size Guide</a>
+      </div>
+      <div class="footer-links">
+        <h2>About</h2>
+        <a href="our-story.html">Our Story</a>
+        <a href="find-your-fit.html">Find Your Fit</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 SOLE. All rights reserved.</p>
+      <p>Made for every step.</p>
+    </div>
+  </footer>
+</body>
+</html>
