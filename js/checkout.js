@@ -1,17 +1,18 @@
 const checkoutPage = document.querySelector("#checkout-content");
 
 if (sessionStorage.getItem("sole-preview-auth") !== "signed-in") {
-  window.location.replace("accounts.html?return=checkout");
+  window.location.replace("../pages/accounts.html?return=checkout");
 } else if (!(checkoutPage instanceof HTMLElement)) {
   throw new Error("Checkout page is missing its content container.");
 } else {
   checkoutPage.hidden = false;
 
 const checkoutCartKey = "sole-cart";
-const checkoutRate = 280;
-const checkoutFormatPrice = (priceUsd) =>
+const resolveCheckoutImage = (imagePath) =>
+  `../${imagePath.replace(/^(?:\.\.\/)+/, "").replace(/^\/+/, "")}`;
+const checkoutFormatPrice = (pricePkr) =>
   `PKR ${new Intl.NumberFormat("en-PK", { maximumFractionDigits: 0 }).format(
-    Math.round(priceUsd * checkoutRate),
+    Math.round(pricePkr),
   )}`;
 
 const checkoutItems = document.querySelector("#checkout-items");
@@ -49,19 +50,23 @@ const readCheckoutCart = () => {
     throw new TypeError(`Expected an array in localStorage key "${checkoutCartKey}".`);
   }
 
-  return parsedCart.filter((product) =>
-    product &&
-    typeof product.id === "string" &&
-    typeof product.name === "string" &&
-    typeof product.image === "string" &&
-    Number.isFinite(product.priceUsd) &&
-    product.priceUsd >= 0,
-  ).map((product) => ({
-    ...product,
-    quantity: Number.isInteger(product.quantity) && product.quantity > 0
-      ? product.quantity
-      : 1,
-  }));
+  return parsedCart
+    .filter((product) => product && typeof product.id === "string")
+    .map((product) => {
+      const currentProduct = allProducts.find((item) => item.id === product.id);
+      return {
+        ...product,
+        ...(currentProduct ?? {}),
+        cartLineId:
+          typeof product.cartLineId === "string"
+            ? product.cartLineId
+            : `${product.id}::${product.selectedSize || "default"}`,
+        quantity: Number.isInteger(product.quantity) && product.quantity > 0
+          ? product.quantity
+          : 1,
+      };
+    })
+    .filter((product) => Number.isFinite(product.pricePkr) && product.pricePkr >= 0);
 };
 
 const saveCheckoutCart = (cart) => {
@@ -72,7 +77,7 @@ const saveCheckoutCart = (cart) => {
 const renderCheckout = () => {
   const cart = readCheckoutCart();
   const quantity = cart.reduce((total, item) => total + item.quantity, 0);
-  const subtotal = cart.reduce((total, item) => total + item.priceUsd * item.quantity, 0);
+  const subtotal = cart.reduce((total, item) => total + item.pricePkr * item.quantity, 0);
 
   checkoutItems.replaceChildren();
   checkoutItemCount.textContent = `${quantity} ${quantity === 1 ? "item" : "items"}`;
@@ -87,10 +92,11 @@ const renderCheckout = () => {
     const item = document.createElement("article");
     item.className = "checkout-item";
     item.dataset.productId = product.id;
+    item.dataset.cartLineId = product.cartLineId;
 
     const image = document.createElement("img");
     image.className = "checkout-item__image";
-    image.src = product.image;
+    image.src = resolveCheckoutImage(product.image);
     image.alt = product.imageAlt ?? product.name;
     image.loading = "lazy";
 
@@ -101,8 +107,13 @@ const renderCheckout = () => {
     const name = document.createElement("h3");
     name.textContent = product.name;
     const price = document.createElement("strong");
-    price.textContent = checkoutFormatPrice(product.priceUsd);
+    price.textContent = checkoutFormatPrice(product.pricePkr);
     details.append(category, name, price);
+    if (product.selectedSize) {
+      const size = document.createElement("p");
+      size.textContent = `Size: EU ${product.selectedSize}`;
+      details.append(size);
+    }
 
     const controls = document.createElement("div");
     controls.className = "checkout-item__controls";
@@ -111,7 +122,7 @@ const renderCheckout = () => {
     decrease.setAttribute("aria-label", `Decrease ${product.name} quantity`);
     decrease.textContent = "−";
     decrease.addEventListener("click", () => {
-      updateCheckoutQuantity(product.id, product.quantity - 1);
+      updateCheckoutQuantity(product.cartLineId, product.quantity - 1);
     });
     const count = document.createElement("span");
     count.textContent = String(product.quantity);
@@ -120,7 +131,7 @@ const renderCheckout = () => {
     increase.setAttribute("aria-label", `Increase ${product.name} quantity`);
     increase.textContent = "+";
     increase.addEventListener("click", () => {
-      updateCheckoutQuantity(product.id, product.quantity + 1);
+      updateCheckoutQuantity(product.cartLineId, product.quantity + 1);
     });
     controls.append(decrease, count, increase);
 
@@ -129,7 +140,7 @@ const renderCheckout = () => {
     remove.type = "button";
     remove.setAttribute("aria-label", `Remove ${product.name} from bag`);
     remove.textContent = "Remove";
-    remove.addEventListener("click", () => updateCheckoutQuantity(product.id, 0));
+    remove.addEventListener("click", () => updateCheckoutQuantity(product.cartLineId, 0));
 
     const itemActions = document.createElement("div");
     itemActions.className = "checkout-item__actions";
@@ -139,9 +150,9 @@ const renderCheckout = () => {
   }
 };
 
-const updateCheckoutQuantity = (productId, quantity) => {
+const updateCheckoutQuantity = (cartLineId, quantity) => {
   const cart = readCheckoutCart()
-    .map((product) => product.id === productId ? { ...product, quantity } : product)
+    .map((product) => product.cartLineId === cartLineId ? { ...product, quantity } : product)
     .filter((product) => product.quantity > 0);
   saveCheckoutCart(cart);
   renderCheckout();

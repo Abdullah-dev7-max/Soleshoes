@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#74604f">
+  <meta name="description" content="Product details, sizing, delivery information, and related SOLE sneakers.">
+  <title>Sneaker Details — SOLE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/script.js" defer></script>
+  <script src="../js/product-detail.js" defer></script>
+</head>
+<body>
+  <header class="site-header site-header--light">
+    <a class="brand" href="../index.html#collection" aria-label="SOLE home">
+      <span class="brand__mark" aria-hidden="true">S</span>
+      <span>SOLE<span class="brand__period">.</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="../index.html#collection">Men</a>
+      <a href="./women.html">Women</a>
+      <a href="./kids.html">Kids</a>
+      <a href="./accessories.html">Accessories</a>
+      <a href="./collection.html">Collection</a>
+      <a href="./brands.html">Brands</a>
+    </nav>
+    <div class="header-actions" aria-label="Store shortcuts">
+      <form class="header-search" role="search">
+        <button class="header-search-trigger" type="button" aria-label="Open product search" aria-expanded="false" aria-controls="header-search-results">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.6"></circle><path d="m16 16 4.2 4.2"></path></svg>
+        </button>
+        <input class="header-search__input" type="search" aria-label="Search products" placeholder="Search..." autocomplete="off" tabindex="-1">
+        <button class="header-search__close" type="button" aria-label="Close search" tabindex="-1">&times;</button>
+        <div class="header-search__results" id="header-search-results" hidden>
+          <p class="header-search__status" role="status" aria-live="polite"></p>
+          <div class="header-search__suggestions"></div>
+          <div class="header-search__products"></div>
+        </div>
+      </form>
+      <a class="header-icon header-account" href="./accounts.html" aria-label="My account">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.5" r="3.2"></circle><path d="M5.8 20c.4-3.5 2.6-5.5 6.2-5.5s5.8 2 6.2 5.5"></path></svg>
+      </a>
+      <a class="header-icon header-favorites" href="./favorites.html" aria-label="Favourites">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 8.8c0 4.3-8.4 10-8.4 10s-8.4-5.7-8.4-10a4.2 4.2 0 0 1 8.4-1 4.2 4.2 0 0 1 8.4 1Z"></path></svg>
+        <span class="header-count" hidden></span>
+      </a>
+      <button class="header-icon header-icon--bag header-cart" type="button" aria-label="Shopping bag">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 12H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
+        <span class="bag-count" hidden></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="product-detail-page">
+    <nav class="product-detail-breadcrumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+      <a href="../index.html#product-grid">Sneakers</a><span aria-hidden="true">/</span>
+      <span id="product-breadcrumb-name">Product</span>
+    </nav>
+
+    <section class="product-detail" id="product-detail" aria-labelledby="product-name" hidden>
+      <div class="product-detail__gallery">
+        <figure class="product-detail__image-frame">
+          <img id="product-image" alt="" fetchpriority="high">
+          <figcaption class="product-detail__image-note">Product image shown is the catalogue image available for this preview.</figcaption>
+        </figure>
+      </div>
+      <div class="product-detail__info">
+        <p class="product-detail__eyebrow" id="product-category"></p>
+        <h1 id="product-name"></h1>
+        <p class="product-detail__price" id="product-price"></p>
+        <p class="product-detail__description" id="product-description"></p>
+
+        <div class="product-detail__variation">
+          <div class="product-detail__variation-heading">
+            <span id="product-size-label">Select size</span>
+            <a href="./size-guide.html">Size guide</a>
+          </div>
+          <div class="product-detail__sizes" id="product-sizes" role="group" aria-labelledby="product-size-label"></div>
+          <p class="product-detail__status" id="product-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="product-detail__actions">
+          <button class="product-detail__button product-detail__button--primary" id="product-add" type="button">Add to bag</button>
+          <button class="product-detail__button product-detail__button--secondary" id="product-buy" type="button">Buy now</button>
+          <button class="product-detail__favorite" id="product-favorite" type="button" aria-label="Add to favourites">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 8.8c0 4.3-8.4 10-8.4 10s-8.4-5.7-8.4-10a4.2 4.2 0 0 1 8.4-1 4.2 4.2 0 0 1 8.4 1Z"></path></svg>
+          </button>
+        </div>
+
+        <div class="product-detail__service">
+          <article><span aria-hidden="true">↗</span><div><h2>Delivery</h2><p>Delivery charges and delivery time have not been set for this preview. Please confirm them with the store before ordering.</p></div></article>
+          <article><span aria-hidden="true">↺</span><div><h2>Returns</h2><p>Return eligibility and terms must be confirmed with the store.</p></div></article>
+        </div>
+        <p class="product-detail__preview-note">This is a storefront preview. Product details and checkout are illustrative; no order or payment is processed.</p>
+      </div>
+    </section>
+
+    <section class="product-detail__not-found" id="product-not-found" hidden>
+      <p class="product-detail__eyebrow">PRODUCT NOT FOUND</p>
+      <h1>We couldn't find that pair.</h1>
+      <p>It may have moved from the collection. Browse the latest styles to find another favourite.</p>
+      <a class="product-detail__button product-detail__button--primary" href="../index.html#product-grid">Browse sneakers</a>
+    </section>
+
+    <section class="product-detail__terms" id="product-detail-terms" hidden>
+      <div>
+        <p class="product-detail__eyebrow">GOOD TO KNOW</p>
+        <h2>Before you order</h2>
+        <p>Prices, product information, delivery, and return details are shown for this website preview. Confirm the final product and store terms before making a purchase.</p>
+      </div>
+      <nav aria-label="Product policies">
+        <a href="./shipping-returns.html">Shipping &amp; Returns</a>
+        <a href="./terms-of-service.html">Terms of Service</a>
+        <a href="./contact.html">Contact the store</a>
+      </nav>
+    </section>
+
+    <section class="product-detail__reviews" id="product-detail-reviews" aria-labelledby="product-reviews-title" hidden>
+      <div>
+        <p class="product-detail__eyebrow">REAL CUSTOMER FEEDBACK</p>
+        <h2 id="product-reviews-title">Reviews</h2>
+      </div>
+      <p>Customer reviews are not available for this product in the storefront preview.</p>
+    </section>
+
+    <section class="product-detail__suggestions" id="product-detail-suggestions" aria-labelledby="related-products-title" hidden>
+      <div class="product-detail__section-heading">
+        <div><p class="product-detail__eyebrow">MORE TO LOVE</p><h2 id="related-products-title">You may also like</h2></div>
+      </div>
+      <div class="product-grid" id="related-product-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand-column">
+        <a class="footer-brand" href="../index.html#collection">SOLE<span>.</span></a>
+        <p>Everyday sneakers for wherever life takes you. Find your fit and make every step your own.</p>
+        <div class="footer-socials" aria-label="Social media">
+          <a href="../index.html#collection" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="footer-socials__dot" cx="17.7" cy="6.8" r="1"></circle></svg></a>
+          <a href="../index.html#collection" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4v10.5a4 4 0 1 1-3-3.9M14 4c.5 2.8 2.3 4.7 5 5.2"></path></svg></a>
+          <a href="../index.html#collection" aria-label="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 3.5c-4.7 0-7.6 3.2-7.6 6.8 0 2.1.8 4 2.5 4.7.3.1.5 0 .6-.3l.3-1c.1-.3.1-.4-.2-.7-.5-.6-.8-1.4-.8-2.5 0-3.2 2.4-6.1 6.2-6.1 3.4 0 5.2 2.1 5.2 4.9 0 3.7-1.6 6.8-4 6.8-1.3 0-2.2-1.1-1.9-2.4.4-1.6 1.1-3.3 1.1-4.4 0-1-.5-1.8-1.6-1.8-1.3 0-2.3 1.4-2.3 3.2 0 1.2.4 2 .4 2s-1.4 5.8-1.7 6.8c-.5 2-.1 4.5 0 4.7.1.1.2.1.3 0 .1-.2 1.9-2.3 2.5-4.2l.8-3.1c.4.8 1.7 1.4 3 1.4 4 0 6.7-3.6 6.7-8.5 0-3.7-3.1-7.2-7.5-7.2Z"></path></svg></a>
+        </div>
+      </div>
+      <div class="footer-links"><h2>Shop</h2><a href="../index.html#product-grid">New Arrivals</a><a href="./women.html">Women's Sneakers</a><a href="./kids.html">Kids' Sneakers</a><a href="./favorites.html">Favourites</a></div>
+      <div class="footer-links"><h2>Help</h2><a href="./contact.html">Contact Us</a><a href="./faq.html">FAQs</a><a href="./shipping-returns.html">Shipping &amp; Returns</a><a href="./size-guide.html">Size Guide</a></div>
+      <div class="footer-links"><h2>About</h2><a href="./our-story.html">Our Story</a><a href="./privacy-policy.html">Privacy Policy</a><a href="./terms-of-service.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 SOLE. All rights reserved.</p><p>Made for every step.</p></div>
+  </footer>
+</body>
+</html>

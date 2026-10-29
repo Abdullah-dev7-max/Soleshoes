@@ -1,11 +1,13 @@
 const ASSET_BASE = window.location.pathname.includes("/pages/") ? "../Assets/" : "Assets/";
 const SITE_ROOT = window.location.pathname.includes("/pages/") ? "../" : "";
+const resolveProductImage = (imagePath) =>
+  `${SITE_ROOT}${imagePath.replace(/^(?:\.\.\/)+/, "").replace(/^\/+/, "")}`;
 
 const featuredProducts = [
   {
     name: "Everyday Classic",
     category: "Men's Sneakers",
-    priceUsd: 229.96,
+    pricePkr: 5290,
     description: "A timeless everyday sneaker with a comfortable fit and clean finish.",
     image: `${ASSET_BASE}find%20your%20fit.jpg`,
     imageAlt: "Light-colored classic sneaker",
@@ -13,7 +15,7 @@ const featuredProducts = [
   {
     name: "Neutral Runner",
     category: "Men's Sneakers",
-    priceUsd: 329.96,
+    pricePkr: 4990,
     description: "Soft neutral tones and all-day comfort for your daily rotation.",
     image: `${ASSET_BASE}get%20your%20pair.jpg`,
     imageAlt: "Neutral-toned sneaker",
@@ -21,7 +23,7 @@ const featuredProducts = [
   {
     name: "City Pace",
     category: "Men's Sneakers",
-    priceUsd: 169.99,
+    pricePkr: 4590,
     description: "A versatile street-ready sneaker made for days on the move.",
     image: `${ASSET_BASE}Shop%20sneakers.jpg`,
     imageAlt: "White sneaker in a city setting",
@@ -32,7 +34,7 @@ const summerProducts = [
   {
     name: "Orange Suede Low",
     category: "Men's Sneakers",
-    priceUsd: 189.99,
+    pricePkr: 3890,
     description: "Soft suede with a bold colorway for easy summer styling.",
     image: `${ASSET_BASE}left%20snaeks.jpg`,
     imageAlt: "Orange suede sneakers",
@@ -40,7 +42,7 @@ const summerProducts = [
   {
     name: "Green Court Classic",
     category: "Men's Sneakers",
-    priceUsd: 219.99,
+    pricePkr: 5290,
     description: "A laid-back court sneaker in fresh green and cream tones.",
     image: `${ASSET_BASE}right%20top%20sneakers.jpg`,
     imageAlt: "Green court sneaker on a woven chair",
@@ -48,7 +50,7 @@ const summerProducts = [
   {
     name: "Yellow Track Low",
     category: "Men's Sneakers",
-    priceUsd: 169.99,
+    pricePkr: 4290,
     description: "Retro-inspired runners with a bright, easy-to-wear finish.",
     image: `${ASSET_BASE}right%20bottom%20sneakes.jpg`,
     imageAlt: "Yellow retro sneakers",
@@ -56,7 +58,7 @@ const summerProducts = [
   {
     name: "Brown Suede Classic",
     category: "Men's Sneakers",
-    priceUsd: 199.99,
+    pricePkr: 5590,
     description: "A timeless brown suede pair with a comfortable gum sole.",
     image: `${ASSET_BASE}bottom%20sneakers.jpg`,
     imageAlt: "Brown suede sneakers",
@@ -64,7 +66,7 @@ const summerProducts = [
   {
     name: "Neutral Everyday",
     category: "Men's Sneakers",
-    priceUsd: 179.99,
+    pricePkr: 3490,
     description: "A versatile neutral sneaker that goes with your daily rotation.",
     image: `${ASSET_BASE}find%20your%20fit.jpg`,
     imageAlt: "Light neutral everyday sneakers",
@@ -72,7 +74,7 @@ const summerProducts = [
   {
     name: "Fresh Pair Runner",
     category: "Men's Sneakers",
-    priceUsd: 209.99,
+    pricePkr: 4190,
     description: "A lightweight everyday pick with a clean, modern profile.",
     image: `${ASSET_BASE}get%20your%20pair.jpg`,
     imageAlt: "Fresh neutral sneaker",
@@ -83,7 +85,7 @@ const womenProducts = [
   {
     name: "Soft Step Runner",
     category: "Women's Sneakers",
-    priceUsd: 189.99,
+    pricePkr: 4290,
     description: "A lightweight neutral runner for comfortable days on the move.",
     image: `${ASSET_BASE}find%20your%20fit.jpg`,
     imageAlt: "Light neutral sneakers for everyday wear",
@@ -91,7 +93,7 @@ const womenProducts = [
   {
     name: "Cedar Suede Low",
     category: "Women's Sneakers",
-    priceUsd: 219.99,
+    pricePkr: 5590,
     description: "A warm suede finish adds an easy statement to everyday outfits.",
     image: `${ASSET_BASE}left%20snaeks.jpg`,
     imageAlt: "Orange suede sneakers",
@@ -99,7 +101,7 @@ const womenProducts = [
   {
     name: "Fresh Day Classic",
     category: "Women's Sneakers",
-    priceUsd: 199.99,
+    pricePkr: 4990,
     description: "A clean, versatile classic that feels at home wherever you go.",
     image: `${ASSET_BASE}get%20your%20pair.jpg`,
     imageAlt: "Fresh everyday sneaker",
@@ -110,7 +112,7 @@ const kidsProducts = [
   {
     name: "Playtime Runner",
     category: "Kids' Sneakers",
-    priceUsd: 99.99,
+    pricePkr: 3290,
     description: "A lightweight everyday pair for school days and playtime.",
     image: `${ASSET_BASE}Shop%20sneakers.jpg`,
     imageAlt: "Everyday sneaker ready for play",
@@ -118,7 +120,7 @@ const kidsProducts = [
   {
     name: "Little Explorer",
     category: "Kids' Sneakers",
-    priceUsd: 119.99,
+    pricePkr: 3890,
     description: "Easy-going comfort for little explorers and big adventures.",
     image: `${ASSET_BASE}get%20your%20pair.jpg`,
     imageAlt: "Comfortable sneaker for little adventures",
@@ -126,18 +128,18 @@ const kidsProducts = [
   {
     name: "Bright Steps Low",
     category: "Kids' Sneakers",
-    priceUsd: 89.99,
+    pricePkr: 2790,
     description: "A fun, colorful favorite made for busy days on the move.",
     image: `${ASSET_BASE}right%20bottom%20sneakes.jpg`,
     imageAlt: "Bright retro sneakers",
   },
 ];
 
-const USD_TO_PKR_RATE = 280;
-const formatPKR = (priceUsd) =>
+const formatPKR = (pricePkr) =>
   `PKR ${new Intl.NumberFormat("en-PK", { maximumFractionDigits: 0 }).format(
-    Math.round(priceUsd * USD_TO_PKR_RATE),
+    Math.round(pricePkr),
   )}`;
+const USD_TO_PKR_RATE = 280;
 
 const allProducts = [
   ...featuredProducts.map((product) => ({
@@ -159,6 +161,7 @@ const allProducts = [
 ].map((product) => ({
   ...product,
   id: `${product.category}:${product.name}`,
+  href: `${SITE_ROOT}pages/product.html?id=${encodeURIComponent(`${product.category}:${product.name}`)}`,
 }));
 
 const FAVORITES_STORAGE_KEY = "sole-favorites";
@@ -174,19 +177,33 @@ const readStoredProducts = (key) => {
   if (!Array.isArray(products)) {
     throw new TypeError(`Expected an array in localStorage key "${key}".`);
   }
-  return products.filter(
-    (product) => product && typeof product.id === "string",
-  ).map((product) =>
-    key === CART_STORAGE_KEY
-      ? {
-          ...product,
-          quantity:
-            Number.isInteger(product.quantity) && product.quantity > 0
-              ? product.quantity
-              : 1,
-        }
-      : product,
-  );
+  return products
+    .filter((product) => product && typeof product.id === "string")
+    .map((product) => {
+      const currentProduct = allProducts.find((item) => item.id === product.id);
+      const normalizedProduct = currentProduct
+        ? { ...product, ...currentProduct }
+        : {
+            ...product,
+            pricePkr: Number.isFinite(product.pricePkr)
+              ? product.pricePkr
+              : Math.round((product.priceUsd ?? 0) * 280),
+            image: typeof product.image === "string" ? product.image : "",
+          };
+      return key === CART_STORAGE_KEY
+        ? {
+            ...normalizedProduct,
+            cartLineId:
+              typeof product.cartLineId === "string"
+                ? product.cartLineId
+                : `${product.id}::${product.selectedSize || "default"}`,
+            quantity:
+              Number.isInteger(product.quantity) && product.quantity > 0
+                ? product.quantity
+                : 1,
+          }
+        : normalizedProduct;
+    });
 };
 
 const writeStoredProducts = (key, products) => {
@@ -197,6 +214,9 @@ const writeStoredProducts = (key, products) => {
 const toggleStoredProduct = (key, product) => {
   const products = readStoredProducts(key);
   const exists = products.some((item) => item.id === product.id);
+  if (key === CART_STORAGE_KEY && exists) {
+    return false;
+  }
   const nextProducts = exists
     ? products.filter((item) => item.id !== product.id)
     : [...products, product];
@@ -204,24 +224,28 @@ const toggleStoredProduct = (key, product) => {
   return !exists;
 };
 
-const addCartProduct = (product) => {
+const addCartProduct = (product, incrementExisting = true) => {
   const cart = readStoredProducts(CART_STORAGE_KEY);
-  const existingItem = cart.find((item) => item.id === product.id);
+  const lineId = `${product.id}::${product.selectedSize || "default"}`;
+  const existingItem = cart.find((item) => item.cartLineId === lineId);
   if (existingItem) {
+    if (!incrementExisting) {
+      return;
+    }
     existingItem.quantity += 1;
   } else {
-    cart.push({ ...product, quantity: 1 });
+    cart.push({ ...product, cartLineId: lineId, quantity: 1 });
   }
   writeStoredProducts(CART_STORAGE_KEY, cart);
 };
 
-const setCartProductQuantity = (productId, quantity) => {
+const setCartProductQuantity = (cartLineId, quantity) => {
   const cart = readStoredProducts(CART_STORAGE_KEY);
   const updatedCart =
     quantity <= 0
-      ? cart.filter((item) => item.id !== productId)
+      ? cart.filter((item) => item.cartLineId !== cartLineId)
       : cart.map((item) =>
-          item.id === productId ? { ...item, quantity } : item,
+          item.cartLineId === cartLineId ? { ...item, quantity } : item,
         );
   writeStoredProducts(CART_STORAGE_KEY, updatedCart);
 };
@@ -324,7 +348,7 @@ const makeProductAction = (type, product) => {
     if (type === "favorite") {
       toggleStoredProduct(FAVORITES_STORAGE_KEY, product);
     } else {
-      addCartProduct(product);
+      addCartProduct(product, false);
     }
     updateStoreControls();
     if (
@@ -367,23 +391,40 @@ const renderProductGrid = (selector, products) => {
   }
 
   for (const product of visibleProducts) {
-    const identifiedProduct =
+    const     identifiedProduct =
       product.id
         ? product
         : {
             ...product,
             id: `${product.category}:${product.name}`,
+            href: `${SITE_ROOT}pages/product.html?id=${encodeURIComponent(`${product.category}:${product.name}`)}`,
           };
     const card = document.createElement("article");
     card.className = "product-card";
     card.dataset.productId = identifiedProduct.id;
+    card.tabIndex = 0;
+    card.setAttribute("role", "link");
+    card.setAttribute("aria-label", `View ${product.name} details`);
+    card.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest("button, a")) {
+        return;
+      }
+      window.location.href = identifiedProduct.href;
+    });
+    card.addEventListener("keydown", (event) => {
+      if (event.target !== card || (event.key !== "Enter" && event.key !== " ")) {
+        return;
+      }
+      event.preventDefault();
+      window.location.href = identifiedProduct.href;
+    });
 
     const imageFrame = document.createElement("div");
     imageFrame.className = "product-card__image-frame";
 
     const image = document.createElement("img");
     image.className = "product-card__image";
-    image.src = product.image;
+    image.src = resolveProductImage(product.image);
     image.alt = product.imageAlt;
     image.loading = "lazy";
     const imageActions = document.createElement("div");
@@ -402,7 +443,7 @@ const renderProductGrid = (selector, products) => {
 
     const price = document.createElement("p");
     price.className = "product-card__price";
-    price.textContent = formatPKR(product.priceUsd);
+    price.textContent = formatPKR(product.pricePkr);
 
     const category = document.createElement("span");
     category.className = "product-card__category";
@@ -433,6 +474,13 @@ const renderProductGrid = (selector, products) => {
     buyNow.className = "product-card__button product-card__button--primary";
     buyNow.type = "button";
     buyNow.textContent = "Buy Now";
+    buyNow.addEventListener("click", () => {
+      addCartProduct(identifiedProduct);
+      updateStoreControls();
+      window.location.href = sessionStorage.getItem("sole-preview-auth") === "signed-in"
+        ? `${SITE_ROOT}pages/checkout.html`
+        : `${SITE_ROOT}pages/accounts.html?return=checkout`;
+    });
     actions.append(addToCart, buyNow);
 
     details.append(priceRow, name, description, actions);
@@ -516,7 +564,7 @@ const renderCartDrawer = () => {
   const cart = readStoredProducts(CART_STORAGE_KEY);
   const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
   const subtotal = cart.reduce(
-    (total, item) => total + item.priceUsd * item.quantity,
+    (total, item) => total + item.pricePkr * item.quantity,
     0,
   );
   cartDrawerItems.replaceChildren();
@@ -532,10 +580,11 @@ const renderCartDrawer = () => {
     const item = document.createElement("article");
     item.className = "cart-item";
     item.dataset.productId = product.id;
+    item.dataset.cartLineId = product.cartLineId;
 
     const image = document.createElement("img");
     image.className = "cart-item__image";
-    image.src = product.image;
+    image.src = resolveProductImage(product.image);
     image.alt = product.imageAlt;
     image.loading = "lazy";
 
@@ -549,7 +598,15 @@ const renderCartDrawer = () => {
     name.textContent = product.name;
     const price = document.createElement("p");
     price.className = "cart-item__price";
-    price.textContent = formatPKR(product.priceUsd);
+    price.textContent = formatPKR(product.pricePkr);
+    if (product.selectedSize) {
+      const size = document.createElement("p");
+      size.className = "cart-item__size";
+      size.textContent = `Size: EU ${product.selectedSize}`;
+      details.append(category, name, size, price);
+    } else {
+      details.append(category, name, price);
+    }
 
     const controls = document.createElement("div");
     controls.className = "cart-item__controls";
@@ -560,7 +617,7 @@ const renderCartDrawer = () => {
     decrease.setAttribute("aria-label", `Decrease ${product.name} quantity`);
     decrease.textContent = "−";
     decrease.addEventListener("click", () => {
-      setCartProductQuantity(product.id, product.quantity - 1);
+      setCartProductQuantity(product.cartLineId, product.quantity - 1);
       updateStoreControls();
     });
     const quantityValue = document.createElement("span");
@@ -570,7 +627,7 @@ const renderCartDrawer = () => {
     increase.setAttribute("aria-label", `Increase ${product.name} quantity`);
     increase.textContent = "+";
     increase.addEventListener("click", () => {
-      setCartProductQuantity(product.id, product.quantity + 1);
+      setCartProductQuantity(product.cartLineId, product.quantity + 1);
       updateStoreControls();
     });
     quantity.append(decrease, quantityValue, increase);
@@ -580,11 +637,11 @@ const renderCartDrawer = () => {
     remove.type = "button";
     remove.textContent = "Remove";
     remove.addEventListener("click", () => {
-      setCartProductQuantity(product.id, 0);
+      setCartProductQuantity(product.cartLineId, 0);
       updateStoreControls();
     });
     controls.append(quantity, remove);
-    details.append(category, name, price, controls);
+    details.append(controls);
     item.append(image, details);
     cartDrawerItems.append(item);
   }
@@ -592,6 +649,7 @@ const renderCartDrawer = () => {
 
 refreshCartPanel = renderCartDrawer;
 renderCartDrawer();
+updateStoreControls();
 
 const closeCartDrawer = (restoreFocus = true) => {
   if (cartBackdrop.hidden) {
@@ -648,8 +706,8 @@ cartBackdrop.querySelector(".cart-drawer__checkout").addEventListener("click", (
     return;
   }
   window.location.href = sessionStorage.getItem("sole-preview-auth") === "signed-in"
-    ? "checkout.html"
-    : "accounts.html?return=checkout";
+    ? `${SITE_ROOT}pages/checkout.html`
+    : `${SITE_ROOT}pages/accounts.html?return=checkout`;
 });
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !cartBackdrop.hidden) {
@@ -736,7 +794,7 @@ if (headerSearch instanceof HTMLFormElement) {
       productLink.href = product.href;
 
       const image = document.createElement("img");
-      image.src = product.image;
+      image.src = resolveProductImage(product.image);
       image.alt = "";
       image.loading = "lazy";
 
@@ -750,7 +808,7 @@ if (headerSearch instanceof HTMLFormElement) {
       category.textContent = product.category;
       const price = document.createElement("span");
       price.className = "search-result__price";
-      price.textContent = formatPKR(product.priceUsd);
+      price.textContent = formatPKR(product.pricePkr);
 
       details.append(name, category);
       productLink.append(image, details, price);
@@ -1108,7 +1166,7 @@ const createSoleFinder = () => {
       if (productMatchesColor(product, color)) score += 7;
     }
     if (requirements.budget !== null) {
-      const price = Math.round(product.priceUsd * USD_TO_PKR_RATE);
+      const price = Math.round(product.pricePkr);
       if (price <= requirements.budget) score += 4;
       else score -= 2;
     }
@@ -1123,7 +1181,7 @@ const createSoleFinder = () => {
       : allMatches;
     const inBudget = requirements.budget === null
       ? categoryMatches
-      : categoryMatches.filter((product) => Math.round(product.priceUsd * USD_TO_PKR_RATE) <= requirements.budget);
+      : categoryMatches.filter((product) => Math.round(product.pricePkr) <= requirements.budget);
     const budgetMatches = inBudget.length ? inBudget : categoryMatches;
     const matchingColors = requirements.colors.size === 0
       ? budgetMatches
@@ -1189,7 +1247,7 @@ const createSoleFinder = () => {
       link.className = "sole-chat-product__main";
       link.href = product.href;
       const image = document.createElement("img");
-      image.src = product.image;
+      image.src = resolveProductImage(product.image);
       image.alt = product.imageAlt;
       image.loading = "lazy";
       const details = document.createElement("span");
@@ -1197,7 +1255,7 @@ const createSoleFinder = () => {
       const name = document.createElement("strong");
       name.textContent = product.name;
       const price = document.createElement("span");
-      price.textContent = formatPKR(product.priceUsd);
+      price.textContent = formatPKR(product.pricePkr);
       details.append(name, price);
       link.append(image, details);
 

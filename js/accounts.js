@@ -3,13 +3,29 @@ const accountForms = document.querySelectorAll("[data-account-form]");
 const accountNotice = document.querySelector("#account-notice");
 const previewAuthKey = "sole-preview-auth";
 const continueToCheckout = new URLSearchParams(window.location.search).get("return") === "checkout";
+const checkoutPath = "../pages/checkout.html";
+let accountNoticeTimer;
+
+const showAccountNotice = (message, { checkoutRequired = false } = {}) => {
+  window.clearTimeout(accountNoticeTimer);
+  accountNotice.textContent = message;
+  accountNotice.classList.toggle("account-notice--checkout", checkoutRequired);
+  accountNotice.hidden = false;
+
+  if (checkoutRequired) {
+    accountNoticeTimer = window.setTimeout(() => {
+      accountNotice.hidden = true;
+      accountNotice.classList.remove("account-notice--checkout");
+    }, 10000);
+  }
+};
 
 if (continueToCheckout && sessionStorage.getItem(previewAuthKey) === "signed-in") {
-  window.location.replace("checkout.html");
+  window.location.replace(checkoutPath);
 } else if (continueToCheckout) {
-  accountNotice.textContent =
-    "Please log in or sign up to continue to checkout. This is a preview sign-in only; it does not create a real account.";
-  accountNotice.hidden = false;
+  showAccountNotice("Please log in first to place your order.", {
+    checkoutRequired: true,
+  });
 }
 
 const setAccountTab = (name) => {
@@ -24,7 +40,9 @@ const setAccountTab = (name) => {
     form.hidden = form.dataset.accountForm !== name;
   }
 
+  window.clearTimeout(accountNoticeTimer);
   accountNotice.hidden = true;
+  accountNotice.classList.remove("account-notice--checkout");
 };
 
 for (const tab of accountTabs) {
@@ -40,28 +58,28 @@ for (const form of accountForms) {
     form.reset();
 
     if (continueToCheckout) {
-      window.location.replace("checkout.html");
+      window.location.replace(checkoutPath);
       return;
     }
 
-    accountNotice.textContent =
-      "Preview sign-in is active for this tab. No real account was created, and your credentials were not sent or saved.";
-    accountNotice.hidden = false;
+    showAccountNotice(
+      "Preview sign-in is active for this tab. No real account was created, and your credentials were not sent or saved.",
+    );
   });
 }
 
 document.querySelectorAll("[data-account-option]").forEach((option) => {
   option.addEventListener("click", () => {
-    accountNotice.textContent =
-      `${option.dataset.accountOption} will be available when your SOLE account is connected.`;
-    accountNotice.hidden = false;
+    showAccountNotice(
+      `${option.dataset.accountOption} will be available when your SOLE account is connected.`,
+    );
   });
 });
 
 document.querySelectorAll("[data-google-continue]").forEach((button) => {
   button.addEventListener("click", () => {
-    accountNotice.textContent =
-      "Google sign-in is not connected yet. No account data was sent or saved.";
-    accountNotice.hidden = false;
+    showAccountNotice(
+      "Google sign-in is not connected yet. No account data was sent or saved.",
+    );
   });
 });
